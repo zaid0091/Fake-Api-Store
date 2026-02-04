@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake API Store - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-header" style="background:black; padding:10px 16px; border-radius:6px; display:flex; gap:20px;">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:600;">Home</a>
+            <a href="index.html#product" style="color:white; text-decoration:none; font-weight:600;">Products</a>
+            <a href="checkout.html" style="color:white; text-decoration:none; font-weight:600;">Checkout</a>
+        </div>
+
+        <!-- <a href="index.html">
+            <div class="logo">FakeApiProjectJs</div>
+        </a> -->
+        <a href="index.html"><img src="logo.png" alt="FakeApiProjectJs" class="logo-image"></a>
+        <nav>
+
+            <a class="cart-btn" href="cart.html">
+                Cart
+                <span class="cart-count" id="cart-count">
+                    0
+                </span>
+            </a>
+        </nav>
+    </header>
+    <div class="box">
+        <h2 style="font-size: 80px; margin-top: 60px;">The landing page where customers start their shopping journey.
+        </h2>
+
+    </div>
+    <div id="product" class="product">
+        <h2 style="font-size: 60px; ">This section provides access to all your products or product categories</h2>
+        <p style="font-size: 20px;">Discover our wide range of high-quality products, thoughtfully curated and organized
+            into various categories for your convenience. From fashion to electronics, find everything you need in one
+            place for a seamless shopping experience.</p>
+    </div>
+
+    <div class="container">
+        <h1>All Products</h1>
+        <p class="subtitle">Browse our collection</p>
+        <div id="products" class="products">
+            <div style="grid-column: 1/-1; text-align: center; color: var(--muted);">Loading products...</div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="home.js"></script>
+</body>
+
+</html>
