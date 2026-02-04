@@ -41,7 +41,7 @@ let addToCart = (id) => {
     }
 
     if (itemInCart) {
-        itemInCart.qty++; // agr item pehle se cart me hai, quantity barhao
+        itemInCart.qty++; // agar item pehle se cart me hai, quantity barhao
     } else {
         // Product find karo products array me
         let product = null;

@@ -32,7 +32,7 @@ let renderCheckoutPage = () => {
     `;
 };
 
-// 3. Order place kerna or cart clear kerna
+// 3. Order place aur cart clear kerna
 let placeOrder = () => {
 
     if (cart.length === 0) {
@@ -45,8 +45,9 @@ let placeOrder = () => {
     for (let i = 0; i < cart.length; i++) {
         message = message + cart[i].title +
             " Quantity: " + cart[i].qty +
-            ", $" + (cart[i].price * cart[i].qty) + "\n" + "Total:$ " + (cart[i].price * cart[i].qty) + "\n";
+            ", $" + (cart[i].price * cart[i].qty) + "\n";
     }
+    message = message + "\nTotal: $" + calculateTotal();
 
     alert(message); // Order confirmation alert
 
@@ -58,7 +59,7 @@ let placeOrder = () => {
 };
 
 
-// 4. Cart badge ka number update kerna
+// 4. Cart badge ka number update karna
 let updateBadge = () => {
     let count = 0;
     for (let i = 0; i < cart.length; i++) {
