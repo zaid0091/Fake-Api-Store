@@ -67,7 +67,7 @@ let calculateTotal = () => {
 // 4. Cart page ka HTML render kerna
 let renderCartPage = () => {
     if(cart.length === 0){
-        cartDiv.innerHTML = '<p style="text-align:center; padding:2rem;">Your cart is empty</p>';
+        cartDiv.innerHTML = '<p style="text-align:center; color:black; padding:2rem;">Your cart is empty</p>';
         return;
     }
 
@@ -87,7 +87,7 @@ let renderCartPage = () => {
                     <button class="qty-btn" onclick="increaseQty(${item.id})">+</button>
                 </div>
             </td>
-            <td>$${item.price * item.qty}</td>
+            <td>$${(item.price * item.qty).toFixed(2)}</td>
             <td><button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button></td>
         </tr>
     `).join('');
@@ -102,7 +102,7 @@ let renderCartPage = () => {
             <tbody>${rows}</tbody>
         </table>
         <div class="summary">
-            <h3>Total: $${total}</h3>
+            <h3>Total: $${total.toFixed(2)}</h3>
             <a class="btn" href="checkout.html">Proceed to Checkout</a>
         </div>
     `;

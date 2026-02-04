@@ -21,7 +21,7 @@ let renderProducts = () => {
     productsContainer.innerHTML = products.map((p) => `
         <div class="product-card">
             <img src="${p.image}" alt="${p.title}">
-            <div class="product-title">${p.title}</div>
+            <div style="color:black;" class="product-title">${p.title}</div>
             <div class="price">$${p.price}</div>
             <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
         </div>
