@@ -66,7 +66,8 @@ let addToCart = (id) => {
             title: product.title,
             price: product.price,
             qty: 1,
-            image: product.image
+            image: product.image,
+            description: product.description
         });
         console.log("Item added to cart:", product.title);
     }
