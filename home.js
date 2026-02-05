@@ -30,28 +30,39 @@ let renderProducts = () => {
 
 // 2. Add to Cart function
 let addToCart = (id) => {
+
+    // Ye variable check karega ke item cart me pehle se mojood hai ya nahi
     let itemInCart = null;
 
-    // Cart me check karo agar item pehle se hai
+    // Cart ke andar loop chala kar check kar rahe hain
+    // ke given id ka item pehle se cart me hai ya nahi
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
-            itemInCart = cart[i];
-            break;
+            itemInCart = cart[i]; // item mil gaya
+            break; // loop stop
         }
     }
 
+    // Agar item cart me already hai
     if (itemInCart) {
-        itemInCart.qty++; // agar item pehle se cart me hai, quantity barhao
+
+        // Sirf quantity 1 se increase kar do
+        itemInCart.qty++;
+
     } else {
-        // Product find karo products array me
+
+        // Agar item cart me nahi hai
+        // to products array me se product dhoond rahe hain
         let product = null;
+
         for (let i = 0; i < products.length; i++) {
             if (products[i].id === id) {
-                product = products[i];
-                break;
+                product = products[i]; // product mil gaya
+                break; // loop stop
             }
         }
-        // Naya item cart me add karo
+
+        // Naya product cart me add kar rahe hain
         cart.push({
             id: product.id,
             title: product.title,
@@ -61,10 +72,16 @@ let addToCart = (id) => {
         });
     }
 
-    saveCart(); // Cart ko save karo
+    // Updated cart ko localStorage me save kar rahe hain
+    saveCart();
+
+    // Console me cart show kar rahe hain (debugging ke liye)
     console.log("Item added to cart:", cart);
-    showToast('Item added to cart!'); // Toast show karo
+
+    // User ko message dikhane ke liye toast show
+    showToast('Item added to cart!');
 };
+
 
 // 3. LocalStorage me data save kerna or badge update kerna
 let saveCart = () => {
@@ -74,12 +91,21 @@ let saveCart = () => {
 
 // 4. Cart badge ka number update kerna
 let updateBadge = () => {
+
+    // Cart badge ke liye total items ka count
     let count = 0;
+
+    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
+
+        // Har item ki quantity total count me add kar rahe hain
         count = count + cart[i].qty;
     }
+
+    // Cart badge ko update kar rahe hain
     cartBadge.innerText = count;
 };
+
 
 // 5. Toast notification
 let showToast = (msg) => {

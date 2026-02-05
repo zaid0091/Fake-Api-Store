@@ -5,10 +5,19 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // 1. Cart ka total calculate kerna
 let calculateTotal = () => {
+
+    // Total amount ko 0 se start kar rahe hain
     let total = 0;
+
+    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
-        total = total + cart[i].price * cart[i].qty;
+
+        // Har product ka total nikal rahe hain:
+        // price × quantity
+        total = total + (cart[i].price * cart[i].qty);
     }
+
+    // Cart ka final total return kar rahe hain
     return total;
 };
 
@@ -35,36 +44,53 @@ let renderCheckoutPage = () => {
 // 3. Order place aur cart clear kerna
 let placeOrder = () => {
 
+    // Agar cart empty hai to user ko alert karo aur function exit karo
     if (cart.length === 0) {
-        alert("your cart is empty!");
+        alert("Your cart is empty!");
         return;
     }
 
-    let message = "confirm order?\n\nItems:\n";
+    // Order confirmation message
+    let message = "Confirm order?\n\nItems:\n";
 
+    // Cart ke har item ka detail message me add kar rahe hain
     for (let i = 0; i < cart.length; i++) {
         message = message + cart[i].title +
-            " Quantity: " + cart[i].qty +
-            ", $" + (cart[i].price * cart[i].qty) + "\n";
+                   " Quantity: " + cart[i].qty +
+                   ", $" + (cart[i].price * cart[i].qty) + "\n";
     }
-    message = message + "\nTotal: $" + calculateTotal();
 
-    alert(message); // Order confirmation alert
+    // Total cart value add kar rahe hain
+    message += "\nTotal: $" + calculateTotal();
 
-    cart = []; // Cart empty kar dena
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateBadge();
+    // User ko order confirm karne ke liye alert
+    alert(message);
 
-    window.location.href = "index.html"; // Home page pe redirect
+    // Order place hone ke baad cart ko empty kar do
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart)); // localStorage update
+    updateBadge(); // Cart badge bhi update karo
+
+    // Order ke baad user ko home page pe redirect karo
+    window.location.href = "index.html";
 };
+
 
 
 // 4. Cart badge ka number update karna
 let updateBadge = () => {
+
+    // Cart badge ke liye total items ka count
     let count = 0;
+
+    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
+
+        // Har item ki quantity total count me add kar rahe hain
         count = count + cart[i].qty;
     }
+
+    // Cart badge ko update kar rahe hain
     cartBadge.innerText = count;
 };
 
