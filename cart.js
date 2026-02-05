@@ -12,7 +12,7 @@ let products = JSON.parse(localStorage.getItem('products')) || [];
 //     .then(data => {
 //         products = data;
 //         // renderProducts(); // Data fetch hony k bad display function call
-//         updateBadge();    // Initial badge count set kerna
+//         updateBadge();    // Initial badge count set karna
 //     });
 // } else {
 //     renderCartPage(); // Empty cart
@@ -20,50 +20,36 @@ let products = JSON.parse(localStorage.getItem('products')) || [];
 // }
 
 
-// 1. Cart se item remove kerna
+// 1. Cart se item remove karna
 let removeFromCart = (id) => {
+    for (let i = 0; i < cart.length; i++) {
 
-    // Cart ke har item par loop chala rahe hain
+        // Check kar rahe hain ke current item ka id us id ke barabar hai ya nahi jo function ko mila hai
+        if (cart[i].id === id) {
+
+            // Agar id match ho jaye to us item ko cart se remove kar do
+            cart.splice(i, 1);
+
+            break;
+        }
+    }
+
+    saveCart();
+    renderCartPage();
+};
+
+
+// 2. Cart page k ander quantity barhana ya kam karna
+let increaseQty = (id) => {
+    // cart k har item pe loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
         // Check kar rahe hain ke current item ka id
         // us id ke barabar hai ya nahi jo function ko mila hai
         if (cart[i].id === id) {
 
-            // Agar id match ho jaye to
-            // us item ko cart se remove kar do
-            // splice(i, 1) ka matlab:
-            // index i se 1 item delete karo
-            cart.splice(i, 1);
-
-            // Item remove ho chuka hai,
-            // is liye loop yahin stop kar dete hain
-            break;
-        }
-    }
-
-    // Updated cart ko localStorage mein save kar rahe hain
-    saveCart();
-
-    // Cart page ko dubara render / refresh kar rahe hain
-    renderCartPage();
-};
-
-
-// 2. Cart page k ander quantity barhana ya kam kerna
-let increaseQty = (id) => {
-    // Loop cart ke har item par chalega
-    for (let i = 0; i < cart.length; i++) {
-
-        // Check kar rahe hain ke current item ka id
-        // us id ke barabar hai ya nahi jo function ko mila hai
-        if (cart[i].id === id) { //cart[i].id : mtlab current item ka id, id : mtlab jis product ko hum increase kerna chahte hain
-
-            // Agar id match ho jaye to
-            // us specific product ki quantity 1 se increase kar do
+            // Agar id match ho jaye to us specific product ki quantity 1 se increase kar do
             cart[i].qty++;
-
-            // Item mil chuka hai is liye loop ko yahin rok dete hain
             break;
         }
     }
@@ -73,22 +59,12 @@ let increaseQty = (id) => {
 };
 
 let decreaseQty = (id) => {
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
-
-        // Check kar rahe hain ke current item ka id
-        // us id ke barabar hai ya nahi jo function ko mila hai
-        if (cart[i].id === id) { //cart[i].id : mtlab current item ka id, id : mtlab jis product ko hum increase kerna chahte hain
-
-            // Agar quantity 1 se zyada hai
-            // tab hi quantity ko 1 se decrease karo
-            // (taake quantity 0 ya negative na ho)
+        if (cart[i].id === id) {
+            // Agar quantity 1 se zyada hai tab hi quantity ko 1 se decrease karo
             if (cart[i].qty > 1) {
                 cart[i].qty--;
             }
-
-            // Item mil gaya hai,
-            // is liye loop ko yahin stop kar dete hain
             break;
         }
     }
@@ -97,25 +73,21 @@ let decreaseQty = (id) => {
     renderCartPage();
 };
 
-// 3. Cart ka total calculate kerna
+// 3. Cart ka total calculate karna
 let calculateTotal = () => {
-    // Total amount ko 0 se start kar rahe hain
     let total = 0;
 
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
-        // Har item ka total nikal rahe hain:
+        // Har item ka total:
         // price × quantity
         total = total + (cart[i].price * cart[i].qty);
     }
-
-    // Final total amount return kar rahe hain
     return total;
 };
 
 
-// 4. Cart page ka HTML render kerna
+// 4. Cart page ka HTML render karna
 let renderCartPage = () => {
     if (cart.length === 0) {
         cartDiv.innerHTML = '<p style="text-align:center; color:black; padding:2rem;">Your cart is empty</p>';
@@ -126,8 +98,7 @@ let renderCartPage = () => {
 
     let rows = cart.map(item => `
         <tr>
-            <td><img src="${item.image}" alt="${item.title}" style="width:50px; 
-            color: white;
+            <td><img src="${item.image}" alt="${item.title}" style="width:50px;
             height:50px; object-fit:contain"></td>
             <td>${item.title}</td>
             <td>$${item.price}</td>
@@ -138,7 +109,7 @@ let renderCartPage = () => {
                     <button class="qty-btn" onclick="increaseQty(${item.id})">+</button>
                 </div>
             </td>
-            <td>$${(item.price * item.qty).toFixed(2)}</td>
+            <td >$${(item.price * item.qty).toFixed(2)}</td>
             <td><button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button></td>
         </tr>
     `).join('');
@@ -159,26 +130,20 @@ let renderCartPage = () => {
     `;
 };
 
-// 5. LocalStorage me data save kerna
+// 5. LocalStorage me data save karna
 let saveCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateBadge();
 };
 
-// 6. Cart badge ka number update kerna
+// 6. Cart badge ka number update karna
 let updateBadge = () => {
-
-    // Cart badge ke liye total items ka count
     let count = 0;
-
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
         // Har item ki quantity total count me add kar rahe hain
         count = count + cart[i].qty;
     }
-
-    // Cart badge ko update kar rahe hain
     cartBadge.innerText = count;
 };
 

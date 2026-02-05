@@ -1,14 +1,3 @@
-:root {
-    --primary: #3b82f6;
-    --dark: #0f172a;
-    --card: #1e293b;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --border: #334155;
-    --green: #10b981;
-    --red: #ef4444;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    color: var(--text);
+    color: whitesmoke;
     padding-bottom: 2rem;
 }
 
@@ -27,8 +16,8 @@ body {
 }
 
 .product {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: #1e293b;
+    border: 1px solid #334155;
     border-radius: 8px;
     padding: 20px;
     /* margin: 20px 0; */
@@ -58,14 +47,13 @@ body {
     padding: 4px 10px;
     font-size: 16px;
     cursor: pointer;
-    background: var(--border);
     border: none;
-    color: white;
+    color: black;
     border-radius: 4px;
 }
 
 .qty-btn:hover {
-    background: var(--primary);
+    background: #334155;
 }
 
 .qty-value {
@@ -78,7 +66,6 @@ body {
 header {
     background: white;
     padding: 1rem 2rem;
-    /* border-bottom: 1px solid var(--border); */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -87,11 +74,6 @@ header {
     z-index: 10;
 }
 
-.logo {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--primary);
-}
 
 nav {
     display: flex;
@@ -99,7 +81,7 @@ nav {
 }
 
 a {
-    color: var(--muted);
+    color: #334155;
     cursor: pointer;
     text-decoration: none;
     font-weight: 500;
@@ -107,7 +89,7 @@ a {
 
 a:hover,
 a.active-link {
-    color: var(--primary);
+    color: #334155;
 }
 
 .cart-btn {
@@ -118,7 +100,7 @@ a.active-link {
     position: absolute;
     top: -8px;
     right: -10px;
-    background: var(--red);
+    background: red;
     color: white;
     border-radius: 50%;
     width: 20px;
@@ -131,7 +113,7 @@ a.active-link {
 
 
 .add-cart-btn {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: #2563eb;
     color: #fff;
     border: none;
     padding: 10px 14px;
@@ -143,7 +125,6 @@ a.active-link {
 }
 
 .add-cart-btn:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(59, 130, 246, 0.45);
 }
@@ -170,11 +151,10 @@ a.active-link {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.5rem;
-    align-items: stretch; /* important */
+    align-items: stretch; 
 }
 
 .product-card {
-    /* background: var(--card); */
     border: 1px solid blanchedalmond;
     border-radius: 0.5rem;
     padding: 1.2rem;
@@ -182,7 +162,7 @@ a.active-link {
 
     display: flex;
     flex-direction: column;
-    height: 100%; /* important */
+    height: 100%;
 
     transition: 0.2s;
 }
@@ -197,23 +177,23 @@ a.active-link {
     margin-bottom: 0.5rem;
     line-height: 1.3;
 
-    min-height: 2.6em; /* 2 lines */
+    min-height: 2.6em;
 }
 .price {
     font-size: 1.2rem;
-    color: var(--primary);
+    color: #334155;
     font-weight: 700;
-    margin-top: auto; /* key trick */
+    margin-top: auto;
 }
 
 
 #cart-content {
     margin-top: 2rem;
-    background: none;
+    
 }
 
 .btn {
-    background: var(--primary);
+    background: #2563eb;
     color: white;
     border: none;
     padding: 0.6rem;
@@ -222,12 +202,10 @@ a.active-link {
     font-weight: 600;
 }
 
-.btn:hover {
-    background: #2563eb;
-}
+
 
 .remove-btn {
-    background: var(--red);
+    background: red;
     color: white;
     border: none;
     padding: 0.4rem 0.8rem;
@@ -239,23 +217,24 @@ a.active-link {
 table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--card);
     margin-bottom: 2rem;
     border-radius: 0.5rem;
     overflow: hidden;
+    color: black;
 }
 
 th,
 td {
     padding: 0.8rem;
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #334155;
     vertical-align: middle;
+    color: black;
 }
 
 th {
-    background: #162032;
-    color: var(--muted);
+    /* background: #162032; */
+    color: #94a3b8
 }
 
 td img {
@@ -271,15 +250,16 @@ td img {
 }
 
 .page.active {
-    display: block;
+    display: inline;
 }
 
 .summary {
-    background: var(--card);
+    color: black;
     padding: 1.5rem;
     border-radius: 0.5rem;
     max-width: 320px;
     margin-left: auto;
+    line-height: 2.5rem;
     gap: 20px;
 }
 
@@ -287,14 +267,15 @@ td img {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+    line-height: 2%;
 }
 
 .total {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #334155;
     padding-top: 1rem;
     margin-top: 0.5rem;
     font-size: 1.2rem;
-    color: var(--green);
+    color: green;
     font-weight: bold;
 }
 
@@ -302,7 +283,7 @@ td img {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--green);
+    background: green;
     color: white;
     padding: 1rem;
     border-radius: 0.5rem;

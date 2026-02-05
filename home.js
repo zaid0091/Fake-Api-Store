@@ -2,7 +2,7 @@ let productsContainer = document.querySelector('#products'); // Products grid co
 let cartBadge = document.getElementById('cart-count');        // Navbar cart counter
 let cart = JSON.parse(localStorage.getItem('cart')) || [];    // LocalStorage me dekho cart ka data, agar nahi hai to empty array
 
-// Fetch products from Fake Store API
+// Fetch products
 let products = [];
 let url = 'https://fakestoreapi.com/products';
 
@@ -12,11 +12,11 @@ fetch(url)
         products = data;
         localStorage.setItem('products', JSON.stringify(products));
         renderProducts(); // Data fetch hony k bad display function call
-        updateBadge();    // Initial badge count set kerna
+        updateBadge();    // Initial badge count set karna
     });
 
 
-// 1. Products ko main screen per render kerna
+// 1. Products ko render karna
 let renderProducts = () => {
     productsContainer.innerHTML = products.map((p) => `
         <div class="product-card">
@@ -39,14 +39,12 @@ let addToCart = (id) => {
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
             itemInCart = cart[i]; // item mil gaya
-            break; // loop stop
+            break;
         }
     }
 
     // Agar item cart me already hai
     if (itemInCart) {
-
-        // Sirf quantity 1 se increase kar do
         itemInCart.qty++;
 
     } else {
@@ -57,8 +55,8 @@ let addToCart = (id) => {
 
         for (let i = 0; i < products.length; i++) {
             if (products[i].id === id) {
-                product = products[i]; // product mil gaya
-                break; // loop stop
+                product = products[i];
+                break;
             }
         }
 
@@ -72,37 +70,27 @@ let addToCart = (id) => {
         });
     }
 
-    // Updated cart ko localStorage me save kar rahe hain
     saveCart();
 
-    // Console me cart show kar rahe hain (debugging ke liye)
     console.log("Item added to cart:", cart);
-
-    // User ko message dikhane ke liye toast show
     showToast('Item added to cart!');
 };
 
 
-// 3. LocalStorage me data save kerna or badge update kerna
+// 3. LocalStorage me data save karna or badge update karna
 let saveCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateBadge();
 };
 
-// 4. Cart badge ka number update kerna
+// 4. Cart badge ka number update karna
 let updateBadge = () => {
-
-    // Cart badge ke liye total items ka count
     let count = 0;
-
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
         // Har item ki quantity total count me add kar rahe hain
         count = count + cart[i].qty;
     }
-
-    // Cart badge ko update kar rahe hain
     cartBadge.innerText = count;
 };
 

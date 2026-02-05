@@ -4,9 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="orders"></div>
+    <header>
+        <div class="nav-header" style="background:black; padding:10px 16px; border-radius:6px; display:flex; gap:20px;">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:600;">Home</a>
+            <a href="index.html#product" style="color:white; text-decoration:none; font-weight:600;">Products</a>
+            <a href="checkout.html" style="color:white; text-decoration:none; font-weight:600;">Checkout</a>
+            <a href="orders.html" style="color:white; text-decoration:none; font-weight:600;">Orders</a>
+        </div>
+
+        <!-- <a href="index.html">
+            <div class="logo">FakeApiProjectJs</div>
+        </a> -->
+        <a href="index.html"><img src="logo.png" alt="FakeApiProjectJs" class="logo-image"></a>
+        <nav>
+
+            <a class="cart-btn" href="cart.html">
+                Cart
+                <span class="cart-count" id="cart-count">
+                    0
+                </span>
+            </a>
+        </nav>
+    </header>
+    <div id="orders"></div>
     <script src="orders.js"></script>
 </body>
 </html>

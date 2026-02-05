@@ -3,25 +3,17 @@ let cartBadge = document.getElementById('cart-count');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 
-// 1. Cart ka total calculate kerna
+// 1. Cart ka total calculate karna
 let calculateTotal = () => {
-
-    // Total amount ko 0 se start kar rahe hain
     let total = 0;
-
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
-
-        // Har product ka total nikal rahe hain:
-        // price × quantity
         total = total + (cart[i].price * cart[i].qty);
     }
 
-    // Cart ka final total return kar rahe hain
     return total;
 };
 
-// 2. Checkout screen render kerna
+// 2. Checkout screen render karna
 let renderCheckoutPage = () => {
     const total = calculateTotal();
     checkoutContainer.innerHTML = `
@@ -41,35 +33,39 @@ let renderCheckoutPage = () => {
     `;
 };
 
-// 3. Order place aur cart clear kerna
+// 3. Order place aur cart clear karna
 let placeOrder = () => {
 
-    // Agar cart empty hai to user ko alert karo aur function exit karo
+    // Agar cart empty hai
     if (cart.length === 0) {
         alert("Your cart is empty!");
         return;
     }
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(cart); 
 
+    localStorage.setItem('orders', JSON.stringify(orders));
     // Order confirmation message
-    let message = "Confirm order?\n\nItems:\n";
+    // let message = "Confirm order?\n\nItems:\n";
 
-    // Cart ke har item ka detail message me add kar rahe hain
-    for (let i = 0; i < cart.length; i++) {
-        message = message + cart[i].title +
-                   " Quantity: " + cart[i].qty +
-                   ", $" + (cart[i].price * cart[i].qty) + "\n";
-    }
+    // // Cart ke har item ka detail message me add kar rahe hain
+    // for (let i = 0; i < cart.length; i++) {
+    //     message = message + cart[i].title +
+    //                " Quantity: " + cart[i].qty +
+    //                ", $" + (cart[i].price * cart[i].qty) + "\n";
+    // }
 
-    // Total cart value add kar rahe hain
-    message = message + "\nTotal: $" + calculateTotal();
+    // // Total cart value add kar rahe hain
+    // message = message + "\nTotal: $" + calculateTotal();
 
-    // User ko order confirm karne ke liye alert
-    alert(message);
+    // // User ko order confirm karne ke liye alert
+    // alert(message);
 
     // Order place hone ke baad cart ko empty kar do
     cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart)); // localStorage update
-    updateBadge(); // Cart badge bhi update karo
+    localStorage.setItem('cart', JSON.stringify(cart)); 
+    updateBadge(); 
+    alert("Order placed successfully!");
 
     // Order ke baad user ko home page pe redirect karo
     window.location.href = "index.html";
@@ -79,18 +75,14 @@ let placeOrder = () => {
 
 // 4. Cart badge ka number update karna
 let updateBadge = () => {
-
-    // Cart badge ke liye total items ka count
     let count = 0;
 
-    // Cart ke har item par loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
         // Har item ki quantity total count me add kar rahe hain
         count = count + cart[i].qty;
     }
 
-    // Cart badge ko update kar rahe hain
     cartBadge.innerText = count;
 };
 
