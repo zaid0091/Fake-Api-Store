@@ -68,12 +68,11 @@ let addToCart = (id) => {
             qty: 1,
             image: product.image
         });
+        console.log("Item added to cart:", product.title);
     }
 
     saveCart();
 
-    console.log("Item added to cart:", cart);
-    showToast('Item added to cart!');
 };
 
 
@@ -95,10 +94,3 @@ let updateBadge = () => {
 };
 
 
-// 5. Toast notification
-let showToast = (msg) => {
-    const t = document.getElementById('toast');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-};

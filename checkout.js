@@ -19,16 +19,19 @@ let renderCheckoutPage = () => {
     checkoutContainer.innerHTML = `
         <div class="checkout-box">
             <h2>Order Summary</h2>
-            ${cart.map(item => `
-                <div class="checkout-item">
-                    <img src="${item.image}" alt="${item.title}" style="width:80px; height:80px; object-fit:contain">
-                    <p>${item.title}</p>
-                    <p>Quantity: ${item.qty}</p>
-                    <p>Price: $${item.price}</p>
-                </div>
-            `).join('')}
-            <p>Final Amount: <strong>$${total}</strong></p>
-            <button class="btn" onclick="placeOrder()">Confirm Order</button>
+            <div class="checkout-list">
+                ${cart.map(item => `
+                    <div class="checkout-item">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="item-details">
+                            <p><strong>${item.title}</strong></p>
+                            <p>Qty: ${item.qty} | $${item.price}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <p class="total-price">Final Amount: <strong>$${total.toFixed(2)}</strong></p>
+            <button class="confirm-btn" onclick="placeOrder()">Confirm Order</button>
         </div>
     `;
 };
@@ -86,13 +89,6 @@ let updateBadge = () => {
     cartBadge.innerText = count;
 };
 
-// 5. Toast notification
-let showToast = (msg) => {
-    const t = document.getElementById('toast');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-};
 
 renderCheckoutPage();
 updateBadge();

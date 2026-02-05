@@ -90,7 +90,8 @@ let calculateTotal = () => {
 // 4. Cart page ka HTML render karna
 let renderCartPage = () => {
     if (cart.length === 0) {
-        cartDiv.innerHTML = '<p style="text-align:center; color:black; padding:2rem;">Your cart is empty</p>';
+        cartDiv.innerHTML = '<p style="text-align:center; color:black; padding:2rem;">Your cart is empty</p><a href="index.html#product"><button>Go to Products</button></a>';
+        
         return;
     }
 
@@ -147,14 +148,6 @@ let updateBadge = () => {
     cartBadge.innerText = count;
 };
 
-
-// 7. Toast notification
-let showToast = (msg) => {
-    const t = document.getElementById('toast');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-};
 
 renderCartPage();
 updateBadge();

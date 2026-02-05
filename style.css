@@ -253,6 +253,62 @@ td img {
     display: inline;
 }
 
+.checkout-box {
+    max-width: 450px;
+    margin: 2rem auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    font-family: sans-serif;
+}
+
+.checkout-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.item-details p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.total-price {
+    font-size: 18px;
+    text-align: right;
+    margin: 15px 0;
+}
+
+.confirm-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000; /* No more blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background-color: #333;
+}
+
 .summary {
     color: black;
     padding: 1.5rem;
@@ -277,21 +333,6 @@ td img {
     font-size: 1.2rem;
     color: green;
     font-weight: bold;
-}
-
-.toast {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: green;
-    color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: none;
-}
-
-.toast.show {
-    display: block;
 }
 
 
