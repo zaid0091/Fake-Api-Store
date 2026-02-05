@@ -61,7 +61,7 @@ let placeOrder = () => {
     }
 
     // Total cart value add kar rahe hain
-    message += "\nTotal: $" + calculateTotal();
+    message = message + "\nTotal: $" + calculateTotal();
 
     // User ko order confirm karne ke liye alert
     alert(message);
