@@ -297,7 +297,7 @@ td img {
 .confirm-btn {
     width: 100%;
     padding: 12px;
-    background-color: #000; /* No more blue */
+    background-color: #000;
     color: white;
     border: none;
     border-radius: 5px;

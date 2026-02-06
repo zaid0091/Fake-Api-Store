@@ -1,8 +1,7 @@
-let productsContainer = document.querySelector('#products'); // Products grid container
-let cartBadge = document.getElementById('cart-count');        // Navbar cart counter
+let productsContainer = document.querySelector('#products');
+let cartBadge = document.getElementById('cart-count');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];    // LocalStorage me dekho cart ka data, agar nahi hai to empty array
 
-// Fetch products
 let products = [];
 let url = 'https://fakestoreapi.com/products';
 
@@ -11,8 +10,8 @@ fetch(url)
     .then(data => {
         products = data;
         localStorage.setItem('products', JSON.stringify(products));
-        renderProducts(); // Data fetch hony k bad display function call
-        updateBadge();    // Initial badge count set karna
+        renderProducts();
+        updateBadge();
     });
 
 

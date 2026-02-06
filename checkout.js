@@ -49,7 +49,7 @@ let placeOrder = () => {
 
     localStorage.setItem('orders', JSON.stringify(orders));
     // Order confirmation message
-    // let message = "Confirm order?\n\nItems:\n";
+    // let message = "Confirm your order? Items:";
 
     // // Cart ke har item ka detail message me add kar rahe hain
     // for (let i = 0; i < cart.length; i++) {

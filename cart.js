@@ -1,5 +1,5 @@
-let cartDiv = document.querySelector('#cart-content'); // Cart page container
-let cartBadge = document.getElementById('cart-count');  // Navbar cart counter
+let cartDiv = document.querySelector('#cart-content');
+let cartBadge = document.getElementById('cart-count');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [];
 
@@ -41,14 +41,11 @@ let removeFromCart = (id) => {
 
 // 2. Cart page k ander quantity barhana ya kam karna
 let increaseQty = (id) => {
-    // cart k har item pe loop chala rahe hain
     for (let i = 0; i < cart.length; i++) {
 
         // Check kar rahe hain ke current item ka id
         // us id ke barabar hai ya nahi jo function ko mila hai
         if (cart[i].id === id) {
-
-            // Agar id match ho jaye to us specific product ki quantity 1 se increase kar do
             cart[i].qty++;
             break;
         }
@@ -79,8 +76,7 @@ let calculateTotal = () => {
 
     for (let i = 0; i < cart.length; i++) {
 
-        // Har item ka total:
-        // price × quantity
+        // Har item ka total: price × quantity
         total = total + (cart[i].price * cart[i].qty);
     }
     return total;
