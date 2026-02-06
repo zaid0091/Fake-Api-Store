@@ -58,7 +58,7 @@ let increaseQty = (id) => {
 let decreaseQty = (id) => {
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
-            // Agar quantity 1 se zyada hai tab hi quantity ko 1 se decrease karo
+            // Agar quantity 1 se zyada hai tab hi quantity ko 1 se kam kardo
             if (cart[i].qty > 1) {
                 cart[i].qty--;
             }

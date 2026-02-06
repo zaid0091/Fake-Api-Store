@@ -48,7 +48,8 @@ let placeOrder = () => {
     orders.push(cart); 
 
     localStorage.setItem('orders', JSON.stringify(orders));
-    // Order confirmation message
+
+    // Order message
     // let message = "Confirm your order? Items:";
 
     // // Cart ke har item ka detail message me add kar rahe hain
@@ -65,12 +66,13 @@ let placeOrder = () => {
     // alert(message);
 
     // Order place hone ke baad cart ko empty kar do
+
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart)); 
     updateBadge(); 
     alert("Order placed successfully!");
 
-    // Order ke baad user ko home page pe redirect karo
+    // Order ke baad user ko home page pe redirect kardo
     window.location.href = "index.html";
 };
 
